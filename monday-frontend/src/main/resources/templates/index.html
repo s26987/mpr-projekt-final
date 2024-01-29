@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Studenci</title>
+    <!--    dołączenie pliku css do stylowania projektu, przez thymeleafowy znacznik
+    wskazuje na to początek th: - pozostała część href mówi nam, że odnosimy się do referencji pliku
+    zapis z @{} oznacza, że podajemy adres do rozwiązania przez thymeleaf w docelowym pliku html
+    jaki zostanie zwrócony do klienta/użytkownika -->
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<h4>Studenci</h4>
+<br>
+<!--znacznik th:text mówi nam jaki tekst ma zostać wprowadzony do znacznika html w którym się znajduje
+możemy tu zawierać podstawowe konstrucje javowe
+zapis z ${} pozwala nam odwołać się do wartości zmiennej, lub wartości wyliczonej zmiennej jak ma to miejsce w przykładzie poniżej
+wartość name jest pobierana na podstawie atrybutu dodanego do modelu w metodzie controllera-->
+<!-- th:if i th:unless to odpowiednik konstrukcji if else, z tym wyjątkiem, że znacznik th:unless musi dostać tu ten sam warunek co if aby zadziałać jak else -->
+<!--Hello <p th:if="${name} != null" th:text="${name}"></p>-->
+<!--<p th:unless="${name} != null">World</p>-->
+
+<table>
+    <thead th:if="${!students.isEmpty()}">
+    <tr>
+        <th>Index</th>
+        <th>Imie</th>
+        <th>Oddział</th>
+        <th>Adres email</th>
+        <th>Numer telefonu</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="student : ${students}">
+
+        <td th:text="${student.index}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.unit}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.phoneNumber}"></td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<!--kolejne zastosowanie th:href - tym razem jest to odwołanie do adresu w naszej aplikacji.
+o przeniesienie nas na nowy adres zadba znacznik <a>, a zwrócenie odpowiedniego pliku html będzie obsłużone przez kontroler-->
+<a th:href="@{/students-page/add}">Dodaj Studenta</a><br><br>
+<a th:href="@{/students-page/email}">Znajdź studenta według adresu email</a><br><br>
+<a th:href="@{/students-page/phoneNumber}">Znajdź studenta według numeru telefonu</a><br><br>
+<a th:href="@{/students-page/searchStudent}">Edytuj Studenta</a><br><br>
+<!--znacznik th:insert z kolei pozwala nam korzystać z "komponentów" - fragmentów plików html, które mogą być reużywalne na wielu stronach
+w tym wypadku dopuszczone jest podanie samej nazwy pliku, ponieważ footer.html znajduje się w tym samym folderze co nasz plik
+gdyby tak nie było należałoby podać adres z @{} - jak miało to miejsce np. w przypadku pliku css-->
+<footer th:insert="footer.html"></footer>
+
+</body>
+</html>

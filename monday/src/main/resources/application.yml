@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: monday
+  datasource:
+    url: jdbc:h2:mem:students
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true

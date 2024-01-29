@@ -1,0 +1,41 @@
+body {
+    text-align: left;
+    margin-left: 100px;
+    font-family: Calibri;
+}
+
+
+table {
+    border-collapse: collapse;
+    border: 1px black solid;
+    border-right: none;
+}
+
+
+td, th {
+    text-align: center;
+    border: none;
+    padding: 5px;
+}
+
+th {
+    border: black 1px solid;
+}
+
+td {
+    border: black 1px solid;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: mediumpurple;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: purple;
+    color: white;
+}

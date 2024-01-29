@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wyszukiwanie według adresu email</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<h4>Wyszukiwanie według adresu email</h4>
+<br>
+<form method="POST" th:action="@{/students-page/email}">
+    <label>
+        Adres email
+        <br>
+        <input id="email-input" type="text" name="email">
+    </label>
+    <br><br>
+    <button type="submit">Szukaj</button>
+</form>
+
+<table>
+    <tbody>
+    <br>
+    <tr th:each="student : ${studentEmailData}">
+        <td th:text="${student.index}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.unit}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.phoneNumber}"></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/students-page}">Powrót na strone główną</a>
+<footer th:insert="footer.html"></footer>
+</body>
+</html>

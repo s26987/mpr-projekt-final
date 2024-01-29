@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj dane studenta</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+<h4>Edytuj dane studenta</h4>
+<br>
+<form method="POST" th:action="@{/students-page/editStudent}" th:object="${studentData}">
+    <input type="hidden" th:field="*{id}"/>
+
+    <!--    <label for="index">Indeks:</label>-->
+    <input id="index" type="hidden" th:field="*{index}"/>
+
+    <label for="name">Imię:</label>
+    <br>
+    <input id="name" th:field="*{name}" type="text"/>
+    <br><br>
+    <label for="name">Oddział:</label>
+    <br>
+    <select id="unit-input" name="unit" th:field="*{unit}">
+        <option th:each="unit : ${T(com.example.monday.data.StudentUnit).values()}"
+                th:value="${unit}" th:text="${unit}">
+        </option>
+    </select>
+    <br><br>
+    <label for="email">Adres email:</label>
+    <br>
+    <input id="email" th:field="*{email}" type="text"/>
+    <br><br>
+    <label for="phoneNumber">Numer telefonu:</label>
+    <br>
+    <input id="phoneNumber" th:field="*{phoneNumber}" type="number"/>
+    <br><br>
+    <button type="submit">Aktualizuj</button>
+</form>
+<a th:href="@{/students-page}">Powrót na stronę główną</a>
+</body>
+</html>
